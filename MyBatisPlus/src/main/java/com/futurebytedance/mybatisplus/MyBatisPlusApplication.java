@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //扫描mapper接口所在的包
-@MapperScan("com/futurebytedance/mybatisplus/mapper/UserMapper.java")
+@MapperScan("com.futurebytedance.mybatisplus.mapper")
 public class MyBatisPlusApplication {
 
     public static void main(String[] args) {

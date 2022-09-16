@@ -1,5 +1,6 @@
 package com.futurebytedance.mybatisplus.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
@@ -16,7 +17,8 @@ import lombok.*;
 public class User {
     //将属性所对应的字段指定为主键
     //@TableId注解的value属性用于指定主键的字段
-    @TableId(value = "id")
+    //@TableId注解的type属性设置主键生成策略
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private String name;
     private Integer age;

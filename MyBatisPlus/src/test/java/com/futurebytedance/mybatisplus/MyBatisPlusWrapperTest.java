@@ -52,4 +52,20 @@ public class MyBatisPlusWrapperTest {
         int result = userMapper.delete(queryWrapper);
         System.out.println("result:" + result);
     }
+
+    //实现修改功能
+    @Test
+    public void test04() {
+        //将(年龄大于20并且用户名中含有a)或邮箱为null的用户信息修改
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("age", 20)
+                .like("name", "a")
+                .or()
+                .isNull("email");
+        User user = new User();
+        user.setName("小明");
+        user.setEmail("test@123456@qq.com");
+        int result = userMapper.update(user, queryWrapper);
+        System.out.println("result:" + result);
+    }
 }

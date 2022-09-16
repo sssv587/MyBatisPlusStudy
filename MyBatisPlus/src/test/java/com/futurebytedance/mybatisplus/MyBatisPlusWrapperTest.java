@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yuhang.sun
@@ -82,5 +83,17 @@ public class MyBatisPlusWrapperTest {
         user.setEmail("test@123456@qq.com");
         int result = userMapper.update(user, queryWrapper);
         System.out.println("result:" + result);
+    }
+
+
+    //组装Select语句
+    @Test
+    public void test06() {
+        //查询用户名、年龄、邮箱信息
+        //SELECT name,age,email FROM t_user WHERE is_deleted=0
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("name", "age", "email");
+        List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
+        maps.forEach(System.out::println);
     }
 }

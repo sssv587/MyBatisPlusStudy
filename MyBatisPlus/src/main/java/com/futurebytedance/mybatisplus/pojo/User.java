@@ -1,5 +1,6 @@
 package com.futurebytedance.mybatisplus.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 /**
@@ -9,6 +10,8 @@ import lombok.*;
  * @Description
  */
 @Data
+//设置实体类所对应的表名
+//@TableName("user")
 public class User {
     private Long id;
     private String name;

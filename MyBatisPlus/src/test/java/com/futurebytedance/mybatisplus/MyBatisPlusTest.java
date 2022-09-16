@@ -25,4 +25,16 @@ public class MyBatisPlusTest {
         List<User> list = userMapper.selectList(null);
         list.forEach(System.out::println);
     }
+
+    @Test
+    public void testInsert() {
+        //实现新增用户信息
+        User user = new User();
+        user.setName("张三");
+        user.setAge(23);
+        user.setEmail("123@qq.com");
+        int result = userMapper.insert(user);
+        System.out.println("result:" + result);
+        System.out.println("id:" + user.getId());
+    }
 }

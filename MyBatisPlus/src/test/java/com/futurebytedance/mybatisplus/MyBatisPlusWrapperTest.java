@@ -144,4 +144,19 @@ public class MyBatisPlusWrapperTest {
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.out::println);
     }
+
+    //使用condition组装条件
+    @Test
+    public void test10() {
+        //SELECT id,name,age,email,is_deleted FROM t_user WHERE is_deleted=0 AND (name LIKE ? AND age <= ?)
+        String username = "a";
+        Integer ageBegin = null;
+        Integer ageEnd = 30;
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like(StringUtils.isNotBlank(username), "name", username)
+                .ge(ageBegin != null, "age", ageBegin)
+                .le(ageEnd != null, "age", ageEnd);
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.out::println);
+    }
 }

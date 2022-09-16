@@ -22,6 +22,10 @@ public class MyBatisPlusPluginsTest {
     public void testPage() {
         Page<User> page = new Page<>(2, 3);
         userMapper.selectPage(page, null);
-        System.out.println(page);
+        System.out.println(page.getRecords());
+        System.out.println(page.getPages());
+        System.out.println(page.getTotal());
+        System.out.println(page.hasNext());
+        System.out.println(page.hasPrevious());
     }
 }

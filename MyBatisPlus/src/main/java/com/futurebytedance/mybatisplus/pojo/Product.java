@@ -1,5 +1,6 @@
 package com.futurebytedance.mybatisplus.pojo;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 
 /**
@@ -13,5 +14,6 @@ public class Product {
     private Long id;
     private String name;
     private Integer price;
+    @Version //标识乐观锁版本号字段
     private Integer version;
 }

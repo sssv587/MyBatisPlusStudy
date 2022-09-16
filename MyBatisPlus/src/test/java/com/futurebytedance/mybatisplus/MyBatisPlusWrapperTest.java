@@ -2,6 +2,7 @@ package com.futurebytedance.mybatisplus;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.futurebytedance.mybatisplus.mapper.UserMapper;
@@ -174,5 +175,18 @@ public class MyBatisPlusWrapperTest {
                 .le(ageEnd != null, User::getAge, ageEnd);
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.out::println);
+    }
+
+    //使用LambdaUpdateWrapper
+    @Test
+    public void test12() {
+        //将用户名中含有a并且(年龄大于20或邮箱为null)的用户信息修改
+        //UPDATE t_user SET name=?,email=? WHERE is_deleted=0 AND (name LIKE ? AND (age > ? OR email IS NULL))
+        LambdaUpdateWrapper<User> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.like(User::getName, "a")
+                .and(i -> i.gt(User::getAge, 20).or().isNull(User::getEmail));
+        updateWrapper.set(User::getName, "小黑").set(User::getEmail, "abc@qq.com");
+        int result = userMapper.update(null, updateWrapper);
+        System.out.println("result:" + result);
     }
 }

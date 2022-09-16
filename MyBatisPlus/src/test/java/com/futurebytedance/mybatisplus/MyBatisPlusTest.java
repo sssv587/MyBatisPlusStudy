@@ -74,5 +74,30 @@ public class MyBatisPlusTest {
         System.out.println("result:" + result);
     }
 
+    @Test
+    public void testSelect() {
+        //通过id查询用户信息
+        //SELECT id,name,age,email FROM user WHERE id=?
+//        User user = userMapper.selectById(1L);
+//        System.out.println(user);
 
+        //根据多个id查询多个用户信息
+        //SELECT id,name,age,email FROM user WHERE id IN ( ? , ? , ? )
+//        List<Long> list = Arrays.asList(1L, 2L, 3L);
+//        List<User> users = userMapper.selectBatchIds(list);
+//        users.forEach(System.out::println);
+
+        //根据map集合中的条件查询用户信息
+        //SELECT id,name,age,email FROM user WHERE name = ? AND age = ?
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("name", "Jack");
+//        map.put("age", 20);
+//        List<User> users = userMapper.selectByMap(map);
+//        users.forEach(System.out::println);
+
+        //查询所有数据
+        //SELECT id,name,age,email FROM user
+        List<User> users = userMapper.selectList(null);
+        users.forEach(System.out::println);
+    }
 }

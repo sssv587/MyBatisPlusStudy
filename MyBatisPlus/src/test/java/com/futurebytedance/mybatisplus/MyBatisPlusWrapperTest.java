@@ -42,4 +42,14 @@ public class MyBatisPlusWrapperTest {
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.out::println);
     }
+
+    //组装删除条件
+    @Test
+    public void test03() {
+        //删除邮箱地址为null的用户信息
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.isNull("email");
+        int result = userMapper.delete(queryWrapper);
+        System.out.println("result:" + result);
+    }
 }

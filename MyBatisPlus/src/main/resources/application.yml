@@ -20,3 +20,5 @@ mybatis-plus:
       id-type: auto
   # 配置类型别名所对应的包
   type-aliases-package: com.futurebytedance.mybatisplus.pojo
+  # 扫描通用枚举的包
+  type-enums-package: com.futurebytedance.mybatisplus.enums

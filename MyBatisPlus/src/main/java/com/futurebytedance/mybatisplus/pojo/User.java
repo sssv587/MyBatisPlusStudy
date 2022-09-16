@@ -1,6 +1,7 @@
 package com.futurebytedance.mybatisplus.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.futurebytedance.mybatisplus.enums.SexEnum;
 import lombok.*;
 
 /**
@@ -26,6 +27,8 @@ public class User {
     private Integer age;
 
     private String email;
+
+    private SexEnum sex;
 
     @TableLogic
     private Integer isDeleted;

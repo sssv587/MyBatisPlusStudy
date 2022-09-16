@@ -1,5 +1,6 @@
 package com.futurebytedance.mybatisplus.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
@@ -13,6 +14,8 @@ import lombok.*;
 //设置实体类所对应的表名
 //@TableName("user")
 public class User {
+    //将属性所对应的字段指定为主键
+    @TableId
     private Long id;
     private String name;
     private Integer age;

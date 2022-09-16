@@ -18,7 +18,7 @@ public class User {
     //将属性所对应的字段指定为主键
     //@TableId注解的value属性用于指定主键的字段
     //@TableId注解的type属性设置主键生成策略
-    @TableId(value = "id", type = IdType.AUTO)
+//    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private String name;
     private Integer age;

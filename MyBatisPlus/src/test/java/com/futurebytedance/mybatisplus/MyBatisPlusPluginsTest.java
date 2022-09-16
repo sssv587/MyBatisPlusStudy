@@ -28,4 +28,15 @@ public class MyBatisPlusPluginsTest {
         System.out.println(page.hasNext());
         System.out.println(page.hasPrevious());
     }
+
+    @Test
+    public void testPageVo() {
+        Page<User> page = new Page<>(1, 3);
+        userMapper.selectPageVo(page, 20);
+        System.out.println(page.getRecords());
+        System.out.println(page.getPages());
+        System.out.println(page.getTotal());
+        System.out.println(page.hasNext());
+        System.out.println(page.hasPrevious());
+    }
 }

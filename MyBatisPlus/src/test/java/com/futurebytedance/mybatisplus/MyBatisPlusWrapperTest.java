@@ -1,6 +1,7 @@
 package com.futurebytedance.mybatisplus;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.futurebytedance.mybatisplus.mapper.UserMapper;
 import com.futurebytedance.mybatisplus.pojo.User;
 import org.junit.jupiter.api.Test;
@@ -106,5 +107,18 @@ public class MyBatisPlusWrapperTest {
         queryWrapper.inSql("id", "select id from t_user where id <= 100");
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.out::println);
+    }
+
+    //使用UpdateWrapper实现修改功能
+    @Test
+    public void test08() {
+        //将用户名中含有a并且(年龄大于20或邮箱为null)的用户信息修改
+        //UPDATE t_user SET name=?,email=? WHERE is_deleted=0 AND (name LIKE ? AND (age > ? OR email IS NULL))
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.like("name", "a")
+                .and(i -> i.gt("age", 20).or().isNull("email"));
+        updateWrapper.set("name", "小黑").set("email", "abc@qq.com");
+        int result = userMapper.update(null, updateWrapper);
+        System.out.println("result:" + result);
     }
 }

@@ -1,9 +1,13 @@
 package com.futurebytedance.mybatisplus;
 
+import com.futurebytedance.mybatisplus.pojo.User;
 import com.futurebytedance.mybatisplus.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yuhang.sun
@@ -12,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @Description
  */
 @SpringBootTest
-public class MyBatisServiceTest {
+public class MyBatisPlusServiceTest {
     @Autowired
     private UserService userService;
 
@@ -22,5 +26,20 @@ public class MyBatisServiceTest {
         //SELECT COUNT( * ) FROM user
         long count = userService.count();
         System.out.println("总记录数:" + count);
+    }
+
+    @Test
+    public void testInsertMore() {
+        //批量添加
+        //INSERT INTO user ( id, name, age ) VALUES ( ?, ?, ? )
+        List<User> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            user.setName("sss" + i);
+            user.setAge(20 + i);
+            list.add(user);
+        }
+        boolean b = userService.saveBatch(list);
+        System.out.println(b);
     }
 }

@@ -11,3 +11,8 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 设置MyBatisPlus的全局配置
+  global-config:
+    db-config:
+      # 设置实体类所对应的表的统一前缀
+      table-prefix: t_

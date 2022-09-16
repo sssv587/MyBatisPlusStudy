@@ -2,6 +2,7 @@ package com.futurebytedance.mybatisplus;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.futurebytedance.mybatisplus.mapper.UserMapper;
 import com.futurebytedance.mybatisplus.pojo.User;
 import org.junit.jupiter.api.Test;
@@ -120,5 +121,27 @@ public class MyBatisPlusWrapperTest {
         updateWrapper.set("name", "小黑").set("email", "abc@qq.com");
         int result = userMapper.update(null, updateWrapper);
         System.out.println("result:" + result);
+    }
+
+    //模拟开发中组装条件的情况
+    @Test
+    public void test09() {
+        // SELECT id,name,age,email,is_deleted FROM t_user WHERE is_deleted=0 AND (name LIKE ? AND age <= ?)
+        String username = "a";
+        Integer ageBegin = null;
+        Integer ageEnd = 30;
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(username)) {
+            //isNotBlank判断某个字符串不为空字符串、不为null、不为空白符
+            queryWrapper.like("name", username);
+        }
+        if (ageBegin != null) {
+            queryWrapper.ge("age", ageBegin);
+        }
+        if (ageEnd != null) {
+            queryWrapper.le("age", ageEnd);
+        }
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.out::println);
     }
 }

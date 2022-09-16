@@ -96,4 +96,15 @@ public class MyBatisPlusWrapperTest {
         List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
         maps.forEach(System.out::println);
     }
+
+    //组装子查询
+    @Test
+    public void test07() {
+        //查询id小于等于100的用户信息
+        //SELECT id,name,age,email,is_deleted FROM t_user WHERE is_deleted=0 AND (id IN (select id from t_user where id <= 100))
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.inSql("id", "select id from t_user where id <= 100");
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.out::println);
+    }
 }

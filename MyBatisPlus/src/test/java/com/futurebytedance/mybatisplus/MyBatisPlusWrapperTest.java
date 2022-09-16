@@ -20,6 +20,7 @@ public class MyBatisPlusWrapperTest {
     @Autowired
     private UserMapper userMapper;
 
+    //组装查询条件
     @Test
     public void test01() {
         //查询用户名包含a,年龄在20到30之间,邮箱信息不为null的用户信息
@@ -27,6 +28,17 @@ public class MyBatisPlusWrapperTest {
         queryWrapper.like("name", "a")
                 .between("age", 20, 30)
                 .isNotNull("email");
+        List<User> list = userMapper.selectList(queryWrapper);
+        list.forEach(System.out::println);
+    }
+
+    //组装排序条件
+    @Test
+    public void test02() {
+        //查询用户信息,按照年龄降序排序,如果年龄相同,则按照id升序
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("age")
+                .orderByAsc("id");
         List<User> list = userMapper.selectList(queryWrapper);
         list.forEach(System.out::println);
     }

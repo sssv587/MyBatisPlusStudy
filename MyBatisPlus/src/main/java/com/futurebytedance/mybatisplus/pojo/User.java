@@ -15,7 +15,8 @@ import lombok.*;
 //@TableName("user")
 public class User {
     //将属性所对应的字段指定为主键
-    @TableId
+    //@TableId注解的value属性用于指定主键的字段
+    @TableId(value = "id")
     private Long id;
     private String name;
     private Integer age;

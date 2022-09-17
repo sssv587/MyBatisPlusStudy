@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MyBatisPlus" />
+        <module name="MyBatisPlus_DataSource" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MyBatisPlus" target="1.8" />
+      <module name="MyBatisPlus_DataSource" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

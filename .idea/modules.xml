@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyBatisPlus/MyBatisPlus.iml" filepath="$PROJECT_DIR$/MyBatisPlus/MyBatisPlus.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyBatisPlusStudy.iml" filepath="$PROJECT_DIR$/MyBatisPlusStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyBatisPlus_DataSource/MyBatisPlus_DataSource.iml" filepath="$PROJECT_DIR$/MyBatisPlus_DataSource/MyBatisPlus_DataSource.iml" />
     </modules>
   </component>
 </project>
